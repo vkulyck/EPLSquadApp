@@ -1,0 +1,47 @@
+# Build results
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.userprefs
+
+# Logs
+*.log
+Logs/
+
+# Application Insights local config
+*.ai.config
+
+# Local History for Visual Studio
+.localhistory/
+
+# Visual Studio working folder
+.vs/
+
+# Rider/JetBrains specific
+.idea/
+
+# Configuration and environment files
+appsettings.Development.json
+appsettings.Test.json
+appsettings.Production.json
+
+# Test results
+TestResults/
+*.testlog
+
+# Generated files
+EPLSquadBackend/EPLSquadBackend.http
+
+# Dependencies
+packages/
+node_modules/
+
+# Misc
+.DS_Store

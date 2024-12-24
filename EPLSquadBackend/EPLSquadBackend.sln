@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPLSquadBackend", "EPLSquadBackend\EPLSquadBackend.csproj", "{34010F65-267B-49D9-A191-D9E6F1E915DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EPLSquadBackend.Tests", "EPLSquadBackend.Tests\EPLSquadBackend.Tests.csproj", "{DC6EE03A-C8BC-479D-B3FC-ADDA6945803F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34010F65-267B-49D9-A191-D9E6F1E915DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34010F65-267B-49D9-A191-D9E6F1E915DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34010F65-267B-49D9-A191-D9E6F1E915DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34010F65-267B-49D9-A191-D9E6F1E915DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC6EE03A-C8BC-479D-B3FC-ADDA6945803F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC6EE03A-C8BC-479D-B3FC-ADDA6945803F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC6EE03A-C8BC-479D-B3FC-ADDA6945803F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC6EE03A-C8BC-479D-B3FC-ADDA6945803F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
