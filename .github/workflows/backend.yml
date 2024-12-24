@@ -27,14 +27,17 @@ jobs:
 
       # Restore dependencies
       - name: Restore dependencies
+        working-directory: ./EPLSquadBackend
         run: dotnet restore
 
       # Build the project
       - name: Build the project
+        working-directory: ./EPLSquadBackend
         run: dotnet build --configuration Release --no-restore
 
       # Run tests (if any)
       - name: Run tests
+        working-directory: ./EPLSquadBackend/EPLSquadBackend.Tests
         run: dotnet test --no-restore --verbosity normal
 
       # Build the Docker image
