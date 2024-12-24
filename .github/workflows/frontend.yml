@@ -31,12 +31,16 @@ jobs:
         working-directory: ./epl-squad-frontend
         run: npm install
 
+      - name: Set OpenSSL Legacy Provider
+        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
+
       - name: Build Frontend
         working-directory: ./epl-squad-frontend
         run: npm run build
 
       # Step 4: Log in to Docker Hub
       - name: Log in to Docker Hub
+	working-directory: ./epl-squad-frontend
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
