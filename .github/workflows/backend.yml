@@ -35,7 +35,7 @@ jobs:
         working-directory: ./EPLSquadBackend
         run: dotnet build --configuration Release --no-restore
 
-      # Run tests (if any)
+      # Run tests
       - name: Run tests
         working-directory: ./EPLSquadBackend/EPLSquadBackend.Tests
         run: dotnet test --no-restore --verbosity normal
@@ -47,9 +47,12 @@ jobs:
 
       # Log in to Docker Hub
       - name: Log in to Docker Hub
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        run: echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
 
       # Push the Docker image to Docker Hub
       - name: Push Docker image
-	working-directory: ./EPLSquadBackend
+        working-directory: ./EPLSquadBackend
         run: docker push ${{ secrets.DOCKER_USERNAME }}/epl-squad-backend:latest
