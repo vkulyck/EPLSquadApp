@@ -20,4 +20,6 @@ RUN dotnet publish "EPLSquadBackend.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+# Set ASP.NET Core URLs environment variable
+ENV ASPNETCORE_URLS=http://+:5006;https://+:7075
 ENTRYPOINT ["dotnet", "EPLSquadBackend.dll"]
