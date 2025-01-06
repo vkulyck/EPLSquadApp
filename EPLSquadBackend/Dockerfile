@@ -3,7 +3,7 @@
 # Use the .NET 8.0 runtime image as the base for the final application
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
-EXPOSE 5000
+EXPOSE 5006
 
 # Use the .NET 8.0 SDK image for building the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
