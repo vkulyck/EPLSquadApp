@@ -14,6 +14,15 @@ jobs:
         ports:
           - 6379:6379
 
+      rabbitmq:
+        image: rabbitmq:management
+        ports:
+          - 5672:5672
+          - 15672:15672
+        env:
+          RABBITMQ_DEFAULT_USER: guest
+          RABBITMQ_DEFAULT_PASS: guest
+
     steps:
       # Checkout the code
       - name: Checkout code
@@ -35,7 +44,7 @@ jobs:
         working-directory: ./EPLSquadBackend
         run: dotnet build --configuration Release --no-restore
 
-      # Run tests
+      # Run tests with RabbitMQ
       - name: Run tests
         working-directory: ./EPLSquadBackend/EPLSquadBackend.Tests
         run: dotnet test --no-restore --verbosity normal

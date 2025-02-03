@@ -1,11 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
     "\\src",
     "\\src\\components",
     "\\src\\services"
   ],
-  "SelectedNode": "\\src\\services\\FootballApiService.js",
   "PreviewInSolutionExplorer": false
 }

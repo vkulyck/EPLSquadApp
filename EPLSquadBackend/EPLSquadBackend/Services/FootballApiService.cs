@@ -16,9 +16,15 @@ namespace EPLSquadBackend.Services
         private readonly RedisSettings _redisSettings;
         private readonly ILogger<FootballApiService> _logger;
         private readonly IDatabase _cache;
-        
+        private readonly RabbitMQService _rabbitMQService;
 
-        public FootballApiService(IOptions<FootballApiSettings> apiOptions, IOptions<RedisSettings> redisOptions, HttpClient httpClient, ILogger<FootballApiService> logger, IConnectionMultiplexer redis)
+
+        public FootballApiService(    IOptions<FootballApiSettings> apiOptions
+                                    , IOptions<RedisSettings> redisOptions
+                                    , HttpClient httpClient
+                                    , ILogger<FootballApiService> logger
+                                    , IConnectionMultiplexer redis
+                                    , RabbitMQService rabbitMQService)
         {
             try
             {
@@ -27,6 +33,7 @@ namespace EPLSquadBackend.Services
                 _httpClient = httpClient;
                 _logger = logger;
                 _cache = redis.GetDatabase();
+                _rabbitMQService = rabbitMQService;
             }
             catch (Exception ex)
             {
@@ -49,7 +56,9 @@ namespace EPLSquadBackend.Services
                 if (!string.IsNullOrEmpty(cachedTeam))
                 {
                     _logger.LogInformation("Cache hit for key: {CacheKey}", cacheKey);
-                    return JsonSerializer.Deserialize<Team>(cachedTeam);
+                    Team? cachedValue = JsonSerializer.Deserialize<Team>(cachedTeam);
+                    _rabbitMQService.PublishMessage(cachedValue);
+                    return cachedValue;
                 }
 
                 _logger.LogInformation("Cache miss for key: {CacheKey}. Fetching from API.", cacheKey);
@@ -118,6 +127,11 @@ namespace EPLSquadBackend.Services
                 // Step 4: Cache the result
                 var serializedTeam = JsonSerializer.Serialize(team);
                 await _cache.StringSetAsync(cacheKey, serializedTeam, TimeSpan.FromSeconds(_redisSettings.CacheDurationInSeconds));
+
+                if (team != null)
+                {
+                    _rabbitMQService.PublishMessage(team);
+                }
 
                 return team;
             }

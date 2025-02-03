@@ -14,7 +14,6 @@ namespace EPLSquadBackend
             // Add services to the container.
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
@@ -33,6 +32,9 @@ namespace EPLSquadBackend
             builder.Services.AddLogging();
             builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
                 ConnectionMultiplexer.Connect(builder.Configuration["Redis:ConnectionString"]));
+
+            builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQ"));
+            builder.Services.AddSingleton<RabbitMQService>();
 
 
             builder.Services.Configure<FootballApiSettings>(builder.Configuration.GetSection("FootballApi"));
