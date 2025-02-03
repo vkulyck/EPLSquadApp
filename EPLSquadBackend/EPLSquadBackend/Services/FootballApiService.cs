@@ -16,7 +16,7 @@ namespace EPLSquadBackend.Services
         private readonly RedisSettings _redisSettings;
         private readonly ILogger<FootballApiService> _logger;
         private readonly IDatabase _cache;
-        private readonly RabbitMQService _rabbitMQService;
+        private readonly IRabbitMQService _rabbitMQService;
 
 
         public FootballApiService(    IOptions<FootballApiSettings> apiOptions
@@ -24,7 +24,7 @@ namespace EPLSquadBackend.Services
                                     , HttpClient httpClient
                                     , ILogger<FootballApiService> logger
                                     , IConnectionMultiplexer redis
-                                    , RabbitMQService rabbitMQService)
+                                    , IRabbitMQService rabbitMQService)
         {
             try
             {

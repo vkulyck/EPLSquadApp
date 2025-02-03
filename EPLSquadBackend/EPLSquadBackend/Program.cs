@@ -34,7 +34,7 @@ namespace EPLSquadBackend
                 ConnectionMultiplexer.Connect(builder.Configuration["Redis:ConnectionString"]));
 
             builder.Services.Configure<RabbitMQSettings>(builder.Configuration.GetSection("RabbitMQ"));
-            builder.Services.AddSingleton<RabbitMQService>();
+            builder.Services.AddSingleton<IRabbitMQService,RabbitMQService>();
 
 
             builder.Services.Configure<FootballApiSettings>(builder.Configuration.GetSection("FootballApi"));

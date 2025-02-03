@@ -29,7 +29,7 @@ namespace EPLSquadBackend.Tests
         private Mock<IDatabase> _databaseMock;
         private FootballApiService _footballApiService;
         private HttpClient _httpClient;
-        private Mock<RabbitMQService> _rabbitMQServiceMock;
+        private Mock<IRabbitMQService> _rabbitMQServiceMock;
 
 
         [SetUp]
@@ -41,7 +41,7 @@ namespace EPLSquadBackend.Tests
             _loggerMock = new Mock<ILogger<FootballApiService>>();
             _redisMock = new Mock<IConnectionMultiplexer>();
             _databaseMock = new Mock<IDatabase>();
-            _rabbitMQServiceMock = new Mock<RabbitMQService>();
+            _rabbitMQServiceMock = new Mock<IRabbitMQService>();
 
             _redisMock.Setup(r => r.GetDatabase(It.IsAny<int>(), It.IsAny<object>())).Returns(_databaseMock.Object);
 

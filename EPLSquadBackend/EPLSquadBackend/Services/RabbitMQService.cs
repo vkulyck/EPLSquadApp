@@ -6,7 +6,12 @@ using System.Text.Json;
 
 namespace EPLSquadBackend.Services
 {
-    public class RabbitMQService
+    public interface IRabbitMQService
+    {
+        void PublishMessage<T>(T message);
+    }
+
+    public class RabbitMQService : IRabbitMQService
     {
         private readonly RabbitMQSettings _rabbitSettings;
         private readonly IConnection _connection;
